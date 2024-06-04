@@ -1,0 +1,259 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "HOME";
+}
+
+<nav class="navbar navbar-expand-lg navbar-light shadow">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a class="navbar-brand text-success logo h1 align-self-center" href="@Url.Action("Home", "Home")">
+            SportShop
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <div class="flex-fill">
+                <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Home", "Home")">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Quienes somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contactanos</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar align-self-center d-flex">
+                <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                        <div class="input-group-text">
+                            <i class="fa fa-fw fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+                <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                    <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                </a>
+
+
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="w-100 pt-1 mb-5 text-right">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                <button type="submit" class="input-group-text bg-success text-light">
+                    <i class="fa fa-fw fa-search text-white"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="~/asset/img/tenis1.png" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left align-self-center">
+                            <h1 class="h1 text-success"><b>SportShop</b>Tienda Virtual</h1>
+                            <h3 class="h2">Su tienda de conveniencia</h3>
+                            <p>
+                                <a> "En SportShop, encontrarás todo lo que necesitas para llevar tu rendimiento al máximo nivel. Desde zapatillas de running hasta equipos de entrenamiento, estamos aquí para impulsar tu pasión por el deporte. Descubre nuestra selección hoy mismo y prepárate para superar tus límites." </a>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="~/asset/img/mancuernas.png" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">Articulos para Gimnasio</h1>
+                            <h3 class="h2">Las mejores marcas y los mejores articulos</h3>
+                            <p>
+                                Descubre una amplia gama de equipos de entrenamiento y accesorios de alta calidad para alcanzar tus objetivos fitness.
+                                Rendirse <strong>NO ES UNA OPCION</strong> te ayudamos con tus sueños.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="~/asset/img/tenis3.png" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">Calzado deportivo</h1>
+                            <h3 class="h2">Para todas las edades </h3>
+                            <p>
+                                "¡Encuentra el calzado deportivo perfecto para toda la familia en SportShop! Desde los más pequeños hasta los más grandes, nuestra amplia selección de zapatillas garantiza comodidad y rendimiento en cada paso. Ya sea para correr, entrenar o simplemente estar activo, tenemos el calzado adecuado para todas las edades y actividades. Descubre nuestra colección y haz que cada paso cuente con SportShop."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+</div>
+
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Nuestras Categorias</h1>
+            <p>
+                "Explora nuestras diversas categorías en SportShop y encuentra todo lo que necesitas para tu pasión por el deporte.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="~/asset/img/ropadeportiva.png" class="rounded-circle img-fluid border fixed-size"></a>
+            <h5 class="text-center mt-3 mb-3">Ropa Deportiva</h5>
+            <p class="text-center"><a class="btn btn-success">Comprar</a></p>
+        </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="~/asset/img/tenis4.png" class="rounded-circle img-fluid border fixed-size"></a>
+            <h2 class="h5 text-center mt-3 mb-3">Calzado</h2>
+            <p class="text-center"><a class="btn btn-success">Comprar</a></p>
+        </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="~/asset/img/botella.png" class="rounded-circle img-fluid border fixed-size"></a>
+            <h2 class="h5 text-center mt-3 mb-3">Accesorios</h2>
+            <p class="text-center"><a class="btn btn-success">Comprar</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Productos Destacados</h1>
+                <p>
+                    Explora nuestra selección destacada. Con productos cuidadosamente seleccionados, te ofrecemos lo mejor en rendimiento y estilo.
+                    ¡Descubre la excelencia en cada detalle con nuestros productos destacados!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="shop-single.html">
+                        <img src="~/asset/img/tenisNB.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$240.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Calzado New Balance</a>
+                        <p class="card-text">
+                            Lo mejor en calzado.
+                        </p>
+                        <p class="text-muted">Reviews (35)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="shop-single.html">
+                        <img src="~/asset/img/camisanike.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$480.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Camiseta Nike</a>
+                        <p class="card-text">
+                            Con Tela Dri Fit.
+                        </p>
+                        <p class="text-muted">Reviews (48)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="shop-single.html">
+                        <img src="~/asset/img/bolabasket.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$360.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Baloncesto ball</a>
+                        <p class="card-text">
+                            Material mejorado, tamaño oficial.
+                        </p>
+                        <p class="text-muted">Reviews (74)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

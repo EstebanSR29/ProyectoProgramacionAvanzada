@@ -464,17 +464,19 @@
     <Content Include="asset\img\banner_img_01.jpg" />
     <Content Include="asset\img\banner_img_02.jpg" />
     <Content Include="asset\img\banner_img_03.jpg" />
+    <Content Include="asset\img\bolabasket.png" />
+    <Content Include="asset\img\botella.png" />
     <Content Include="asset\img\brand_01.png" />
     <Content Include="asset\img\brand_02.png" />
     <Content Include="asset\img\brand_03.png" />
     <Content Include="asset\img\brand_04.png" />
+    <Content Include="asset\img\camisanike.png" />
     <Content Include="asset\img\category_img_01.jpg" />
     <Content Include="asset\img\category_img_02.jpg" />
-    <Content Include="asset\img\category_img_03.jpg" />
     <Content Include="asset\img\favicon.ico" />
     <Content Include="asset\img\feature_prod_01.jpg" />
-    <Content Include="asset\img\feature_prod_02.jpg" />
     <Content Include="asset\img\feature_prod_03.jpg" />
+    <Content Include="asset\img\mancuernas.png" />
     <Content Include="asset\img\product_single_01.jpg" />
     <Content Include="asset\img\product_single_02.jpg" />
     <Content Include="asset\img\product_single_03.jpg" />
@@ -485,6 +487,7 @@
     <Content Include="asset\img\product_single_08.jpg" />
     <Content Include="asset\img\product_single_09.jpg" />
     <Content Include="asset\img\product_single_10.jpg" />
+    <Content Include="asset\img\ropadeportiva.png" />
     <Content Include="asset\img\shop_01.jpg" />
     <Content Include="asset\img\shop_02.jpg" />
     <Content Include="asset\img\shop_03.jpg" />
@@ -496,6 +499,11 @@
     <Content Include="asset\img\shop_09.jpg" />
     <Content Include="asset\img\shop_10.jpg" />
     <Content Include="asset\img\shop_11.jpg" />
+    <Content Include="asset\img\tenis1.png" />
+    <Content Include="asset\img\tenis2.png" />
+    <Content Include="asset\img\tenis3.png" />
+    <Content Include="asset\img\tenis4.png" />
+    <Content Include="asset\img\tenisNB.png" />
     <Content Include="asset\js\bootstrap.bundle.min.js" />
     <Content Include="asset\js\custom.js" />
     <Content Include="asset\js\jquery-1.11.0.min.js" />
@@ -636,6 +644,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
