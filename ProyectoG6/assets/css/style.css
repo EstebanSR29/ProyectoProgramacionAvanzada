@@ -737,10 +737,7 @@ h6 {
   background-color: #4154f1;
 }
 
-/*--------------------------------------------------------------
-# Dashboard
---------------------------------------------------------------*/
-/* Filter dropdown */
+
 .dashboard .filter {
   position: absolute;
   right: 0px;
@@ -778,7 +775,7 @@ h6 {
   padding: 8px 15px;
 }
 
-/* Info Cards */
+
 .dashboard .info-card {
   padding-bottom: 10px;
 }
@@ -815,7 +812,7 @@ h6 {
   background: #ffecdf;
 }
 
-/* Activity */
+
 .dashboard .activity {
   font-size: 14px;
 }
@@ -862,7 +859,7 @@ h6 {
   padding-bottom: 0;
 }
 
-/* News & Updates */
+
 .dashboard .news .post-item+.post-item {
   margin-top: 15px;
 }
@@ -895,7 +892,7 @@ h6 {
   margin-left: 95px;
 }
 
-/* Recent Sales */
+
 .dashboard .recent-sales {
   font-size: 14px;
 }
@@ -916,7 +913,7 @@ h6 {
   padding: 10px 0 0 0;
 }
 
-/* Top Selling */
+
 .dashboard .top-selling {
   font-size: 14px;
 }
@@ -938,10 +935,7 @@ h6 {
   max-width: 60px;
 }
 
-/*--------------------------------------------------------------
-# Icons list page
---------------------------------------------------------------*/
-.iconslist {
+iconslist {
   display: grid;
   max-width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -974,9 +968,7 @@ h6 {
   color: #666;
 }
 
-/*--------------------------------------------------------------
-# Profie Page
---------------------------------------------------------------*/
+
 .profile .profile-card img {
   max-width: 120px;
 }
@@ -1028,9 +1020,7 @@ h6 {
   max-width: 120px;
 }
 
-/*--------------------------------------------------------------
-# F.A.Q Page
---------------------------------------------------------------*/
+
 .faq .basic h6 {
   font-size: 18px;
   font-weight: 600;
@@ -1041,9 +1031,7 @@ h6 {
   color: #6980aa;
 }
 
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
+
 .contact .info-box {
   padding: 28px 30px;
 }

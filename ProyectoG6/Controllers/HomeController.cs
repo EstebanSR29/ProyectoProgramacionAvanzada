@@ -16,7 +16,7 @@ namespace ProyectoG6.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(usuario user)
+        public ActionResult Index(usuario entidad)
         {
             //validar credenciales para verificar si avanza o no 
             return View();
@@ -29,7 +29,7 @@ namespace ProyectoG6.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registro(usuario user)
+        public ActionResult Registro(usuario entidad)
         {
             return View();
         }
