@@ -40,5 +40,20 @@ namespace ProyectoG6.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult about()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+
     }
 }

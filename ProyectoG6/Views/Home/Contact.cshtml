@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Contact Us";
+}
+
+<section class="contact-us-section">
+    
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 m-auto text-center">
+                <h1 class="h1">Contáctanos</h1>
+                <p class="lead">
+                    "Nos encantaría saber de ti. Llena el formulario a continuación y nos pondremos en contacto contigo lo antes posible."
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+                <form action="/Contact/Submit" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Asunto</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <h2 class="h2">Dirección</h2>
+                <p>
+                    Universidad Fidelitas,<br>
+                    San Pedro, Costa Rica
+                </p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <h2 class="h2">Teléfono</h2>
+                <p>
+                    +506 2222-2222
+                </p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <h2 class="h2">Correo Electrónico</h2>
+                <p>
+                    info@sportshop.com
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
