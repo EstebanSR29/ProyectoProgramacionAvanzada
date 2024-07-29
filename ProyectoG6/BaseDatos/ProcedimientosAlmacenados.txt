@@ -1,0 +1,28 @@
+--RegistrarUsuario
+
+CREATE PROCEDURE RegistrarUsuario
+	@Nombre varchar(100),
+	@Correo varchar(100),
+	@Contrasenna varchar(20)
+AS
+BEGIN
+	IF (NOT EXISTS(SELECT 1 FROM Usuarios WHERE Correo = @Correo))
+	BEGIN
+		INSERT INTO Usuarios(Nombre, Correo,Contrasenna,Estado,IdRol)
+		VALUES (@Nombre,@Correo,@Contrasenna,1,1)
+	END
+END
+
+--IniciarSesion
+
+CREATE PROCEDURE IniciarSesion
+	@Correo varchar(100),
+	@Contrasenna varchar(20)
+AS
+BEGIN
+	SELECT IdUsuario, Nombre, Correo, Estado, IdRol 
+	FROM Usuarios
+	WHERE Correo = @Correo
+	AND Contrasenna = @Contrasenna
+	AND Estado = 1
+END

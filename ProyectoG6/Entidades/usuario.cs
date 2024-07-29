@@ -1,12 +1,13 @@
 ﻿namespace ProyectoG6.Entidades
 {
-    public class usuario
+    public class Usuario
     {
-        public string correo {  get; set; }
-        public string Nombre { get; set; } 
-        public string contrasena {  get; set; }
-
-
+        public int IdUsuario {  get; set; }
+        public string Nombre { get; set; }
+        public string Correo {  get; set; }
+        public string Contrasena {  get; set; }
+        public bool Estado { get; set; }
+        public byte IdRol { get; set; }
 
     }
 }

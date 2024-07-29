@@ -1,11 +1,9 @@
-﻿@model ProyectoG6.Entidades.usuario
+﻿@model ProyectoG6.Entidades.Usuario
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
     ViewBag.Title = "LOGIN";
-}
-<main>
-    
+}    
     <div class="container">
 
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -15,9 +13,8 @@
 
 
                         <div class="d-flex justify-content-center py-4">
-                            <a href="@Url.Action("Home", "Home")" class="logo d-flex align-items-center w-auto">
-                                <img src="~/assets/img/LOGO.png" class="logo-img" />
-                                <span class="d-none d-lg-block">SportShop</span>
+                            <a class="logo d-flex align-items-center w-auto">
+                                <img src="~/assets/img/LOGO.png" class="logo-img"/>
                             </a>
                         </div>
 
@@ -26,30 +23,31 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Ingresar con su cuenta</h5>
-                                    <p class="text-center small">Ingrese su correo y contraseña</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Inicio de Sesion</h5>
                                 </div>
 
-                                @using (Html.BeginForm("Index", "Home"))
+                                @using (Html.BeginForm("Index", "Login"))
                                 {
 
                                     <div class="col-12">
                                         <div class="input-group has-validation">
-                                            @Html.TextBoxFor(m => m.correo, new { @type = "email", @class = "form-control", @placeholder = "Correo Electronico" })
-                                            <div class="invalid-feedback">Favor ingresar su correo electronico.</div>
+                                            @Html.TextBoxFor(m => m.Correo, new { @type = "email", @class = "form-control", @placeholder = "Correo Electronico", required = "required" })
                                         </div>
                                     </div>
+                                    <br />
 
                                     <div class="col-12">
-                                        @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control", @placeholder = "Contraseña" })
-                                        <div class="invalid-feedback">Favor ingresar contraseña!</div>
+                                        @Html.TextBoxFor(m => m.Contrasena, new { @type = "password", @class = "form-control", @placeholder = "Contraseña", required = "required" })
                                     </div>
+                                    <br />
 
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit">Ingresar</button>
                                     </div>
+                                    <br />
+
                                     <div class="col-12">
-                                        <p class="small mb-0">No tienes cuenta? <a href="@Url.Action("Registro", "Home")">Crear cuenta</a></p>
+                                        <p class="small mb-0">¿No tienes cuenta? <a href="@Url.Action("Registro", "Login")">Crear cuenta</a></p>
                                     </div>
                                 }
                             </div>

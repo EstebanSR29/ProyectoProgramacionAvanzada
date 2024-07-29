@@ -1,4 +1,5 @@
 ﻿using ProyectoG6.Entidades;
+using ProyectoG6.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,52 +8,29 @@ using System.Web.Mvc;
 
 namespace ProyectoG6.Controllers
 {
+    [OutputCache(NoStore = true, VaryByParam = "*", Duration = 0)]
     public class HomeController : Controller
     {
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public ActionResult Index(usuario entidad)
-        {
-            //validar credenciales para verificar si avanza o no 
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Registro()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Registro(usuario entidad)
-        {
-                usuarios.Add(entidad);
-        }
-
+        [FiltroSeguridad]
         [HttpGet]
         public ActionResult Home()
         {
             return View();
         }
 
+        [FiltroSeguridad]
         [HttpGet]
-        public ActionResult about()
+        public ActionResult SobreNosotros()
         {
             return View();
         }
-
-
+        [FiltroSeguridad]
         [HttpGet]
-        public ActionResult Contact()
+        public ActionResult Contacto()
         {
             return View();
         }
-
 
     }
 }
