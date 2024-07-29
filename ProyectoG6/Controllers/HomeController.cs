@@ -31,9 +31,8 @@ namespace ProyectoG6.Controllers
         [HttpPost]
         public ActionResult Registro(usuario entidad)
         {
-            return View();
+                usuarios.Add(entidad);
         }
-
 
         [HttpGet]
         public ActionResult Home()
