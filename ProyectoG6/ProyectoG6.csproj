@@ -174,6 +174,13 @@
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EntityDeploy Include="BaseDatos\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="BaseDatos\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Views\Home\Compra.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -680,13 +687,6 @@
     <Content Include="asset\webfonts\slick.eot" />
     <Content Include="asset\webfonts\slick.ttf" />
     <Content Include="asset\webfonts\slick.woff" />
-    <EntityDeploy Include="BaseDatos\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="BaseDatos\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

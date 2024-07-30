@@ -32,6 +32,31 @@ namespace ProyectoG6.BaseDatos
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     
+        public virtual int ActualizarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> categoria, Nullable<int> idProducto)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(string));
+    
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarProducto", nombreParameter, precioParameter, imagenParameter, categoriaParameter, idProductoParameter);
+        }
+    
         public virtual int AgregarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> categoria)
         {
             var nombreParameter = nombre != null ?
@@ -51,6 +76,15 @@ namespace ProyectoG6.BaseDatos
                 new ObjectParameter("Categoria", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarProducto", nombreParameter, precioParameter, imagenParameter, categoriaParameter);
+        }
+    
+        public virtual int EliminarProducto(Nullable<int> idProducto)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProducto", idProductoParameter);
         }
     
         public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correo, string contrasenna)
@@ -86,40 +120,6 @@ namespace ProyectoG6.BaseDatos
                 new ObjectParameter("Contrasenna", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarUsuario", nombreParameter, correoParameter, contrasennaParameter);
-        }
-    
-        public virtual int ActualizarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> categoria, Nullable<int> idProducto)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var precioParameter = precio.HasValue ?
-                new ObjectParameter("Precio", precio) :
-                new ObjectParameter("Precio", typeof(decimal));
-    
-            var imagenParameter = imagen != null ?
-                new ObjectParameter("Imagen", imagen) :
-                new ObjectParameter("Imagen", typeof(string));
-    
-            var categoriaParameter = categoria.HasValue ?
-                new ObjectParameter("Categoria", categoria) :
-                new ObjectParameter("Categoria", typeof(int));
-    
-            var idProductoParameter = idProducto.HasValue ?
-                new ObjectParameter("IdProducto", idProducto) :
-                new ObjectParameter("IdProducto", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarProducto", nombreParameter, precioParameter, imagenParameter, categoriaParameter, idProductoParameter);
-        }
-    
-        public virtual int EliminarProducto(Nullable<int> idProducto)
-        {
-            var idProductoParameter = idProducto.HasValue ?
-                new ObjectParameter("IdProducto", idProducto) :
-                new ObjectParameter("IdProducto", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProducto", idProductoParameter);
         }
     }
 }

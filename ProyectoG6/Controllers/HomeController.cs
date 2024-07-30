@@ -112,5 +112,11 @@ namespace ProyectoG6.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Compra()
+        {
+            return View();
+        }
+
     }
 }

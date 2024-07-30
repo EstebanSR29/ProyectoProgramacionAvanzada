@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProyectoG6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProyectoG6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categorias">
           <Key>
             <PropertyRef Name="IdCategoria" />
@@ -104,7 +104,8 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoG6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -184,11 +185,21 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <FunctionImport Name="ActualizarProducto">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Imagen" Mode="In" Type="String" />
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="AgregarProducto">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Precio" Mode="In" Type="Decimal" />
             <Parameter Name="Imagen" Mode="In" Type="String" />
             <Parameter Name="Categoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarProducto">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="IniciarSesion" ReturnType="Collection(ProyectoG6Model.IniciarSesion_Result)">
             <Parameter Name="Correo" Mode="In" Type="String" />
@@ -199,16 +210,6 @@
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Correo" Mode="In" Type="String" />
             <Parameter Name="Contrasenna" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="ActualizarProducto">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Precio" Mode="In" Type="Decimal" />
-            <Parameter Name="Imagen" Mode="In" Type="String" />
-            <Parameter Name="Categoria" Mode="In" Type="Int32" />
-            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="EliminarProducto">
-            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="IniciarSesion_Result">
@@ -222,7 +223,7 @@
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="String" Name="Imagen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Imagen" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Categoria" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
@@ -270,7 +271,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarProducto" FunctionName="ProyectoG6Model.Store.ActualizarProducto" />
           <FunctionImportMapping FunctionImportName="AgregarProducto" FunctionName="ProyectoG6Model.Store.AgregarProducto" />
+          <FunctionImportMapping FunctionImportName="EliminarProducto" FunctionName="ProyectoG6Model.Store.EliminarProducto" />
           <FunctionImportMapping FunctionImportName="IniciarSesion" FunctionName="ProyectoG6Model.Store.IniciarSesion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoG6Model.IniciarSesion_Result">
@@ -294,8 +297,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegistrarUsuario" FunctionName="ProyectoG6Model.Store.RegistrarUsuario" />
-          <FunctionImportMapping FunctionImportName="ActualizarProducto" FunctionName="ProyectoG6Model.Store.ActualizarProducto" />
-          <FunctionImportMapping FunctionImportName="EliminarProducto" FunctionName="ProyectoG6Model.Store.EliminarProducto" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
