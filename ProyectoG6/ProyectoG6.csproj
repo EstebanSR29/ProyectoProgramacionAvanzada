@@ -161,6 +161,7 @@
     <Compile Include="BaseDatos\Usuarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\MostrarProductos.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Views\Home\Compra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\style.css" />
