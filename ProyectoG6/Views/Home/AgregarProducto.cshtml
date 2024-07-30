@@ -1,0 +1,48 @@
+﻿@model ProyectoG6.Entidades.Producto
+
+@{
+    ViewBag.Title = "AgregarProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="form-group text-left">
+    <a href="@Url.Action("MostrarProductos", "Home")" class="btn btn-secondary btn-lg ms-2">
+        <i class="fas fa-arrow-left"></i> Volver a Productos
+    </a>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Agregar Producto</h2>
+
+    @using (Html.BeginForm("AgregarProducto", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.Nombre, new { @class = "form-label fw-bold" })
+            @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @class = "form-control", @placeholder = "Nombre del producto", required = "required" })
+        </div>
+
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.Precio, new { @class = "form-label fw-bold" })
+            @Html.TextBoxFor(m => m.Precio, new { @type = "number", @class = "form-control", @placeholder = "Precio del producto", required = "required", step = "1000" })
+        </div>
+
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.Imagen, new { @class = "form-label fw-bold" })
+            @Html.TextBoxFor(m => m.Imagen, new { @type = "text", @class = "form-control", @placeholder = "URL de la imagen", required = "required" })
+        </div>
+
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.Categoria, new { @class = "form-label fw-bold" })
+            @Html.DropDownListFor(m => m.Categoria, (SelectList)ViewBag.Categorias, "Seleccione una categoría", new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Agregar Producto</button>
+        </div>
+        <br />
+        <br />
+        <br />
+
+    }
+</div>
