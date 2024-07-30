@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Compra";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">Proceso de Compra</h2>
+    
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h4>Información del Cliente</h4>
+            <form>
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="fullName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Dirección de Envío</label>
+                    <input type="text" class="form-control" id="address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                </div>
+            </form>
+        </div>
+
+        
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Método de Pago</h4>
+            <form>
+                <div class="mb-3">
+                    <label for="cardName" class="form-label">Nombre en la Tarjeta</label>
+                    <input type="text" class="form-control" id="cardName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+                    <input type="text" class="form-control" id="cardNumber" required>
+                </div>
+                <div class="mb-3">
+                    <label for="expDate" class="form-label">Fecha de Expiración</label>
+                    <input type="text" class="form-control" id="expDate" required>
+                </div>               
+                <button type="submit" class="btn btn-success btn-lg btn-block">Realizar Compra</button>
+            </form>
+        </div>
+    </div>
+</div>
