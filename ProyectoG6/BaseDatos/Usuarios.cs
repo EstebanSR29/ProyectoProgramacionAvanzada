@@ -14,6 +14,14 @@ namespace ProyectoG6.BaseDatos
     
     public partial class Usuarios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuarios()
+        {
+            this.Carrito = new HashSet<Carrito>();
+            this.Comentarios = new HashSet<Comentarios>();
+            this.Maestro = new HashSet<Maestro>();
+        }
+    
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Correo { get; set; }
@@ -21,6 +29,12 @@ namespace ProyectoG6.BaseDatos
         public bool Estado { get; set; }
         public byte IdRol { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Carrito> Carrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comentarios> Comentarios { get; set; }
         public virtual Roles Roles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Maestro> Maestro { get; set; }
     }
 }

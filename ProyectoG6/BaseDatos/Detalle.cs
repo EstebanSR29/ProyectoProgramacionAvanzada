@@ -10,14 +10,20 @@
 namespace ProyectoG6.BaseDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class MostrarProductos_Result
+    public partial class Detalle
     {
+        public int IdDetalle { get; set; }
+        public int IdMaestro { get; set; }
         public int IdProducto { get; set; }
-        public string Nombre { get; set; }
-        public decimal Precio { get; set; }
-        public string Imagen { get; set; }
-        public string Categoria { get; set; }
-        public int Inventario { get; set; }
+        public int Cantidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal Impuesto { get; set; }
+        public decimal Total { get; set; }
+    
+        public virtual Maestro Maestro { get; set; }
+        public virtual Productos Productos { get; set; }
     }
 }

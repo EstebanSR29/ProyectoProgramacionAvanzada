@@ -7,5 +7,6 @@
         public decimal Precio { get; set; }
         public string Imagen { get; set; }
         public int Categoria { get; set; }
+        public int Inventario { get; set; }
     }
 }

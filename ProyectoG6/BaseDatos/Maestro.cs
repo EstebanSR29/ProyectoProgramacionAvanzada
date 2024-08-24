@@ -12,29 +12,23 @@ namespace ProyectoG6.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Productos
+    public partial class Maestro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Productos()
+        public Maestro()
         {
-            this.Carrito = new HashSet<Carrito>();
-            this.Comentarios = new HashSet<Comentarios>();
             this.Detalle = new HashSet<Detalle>();
         }
     
-        public int IdProducto { get; set; }
-        public string Nombre { get; set; }
-        public decimal Precio { get; set; }
-        public string Imagen { get; set; }
-        public int Categoria { get; set; }
-        public int Inventario { get; set; }
+        public int IdMaestro { get; set; }
+        public int IdUsuario { get; set; }
+        public System.DateTime FechaCompra { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal Impuesto { get; set; }
+        public decimal Total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Carrito> Carrito { get; set; }
-        public virtual Categorias Categorias { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comentarios> Comentarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

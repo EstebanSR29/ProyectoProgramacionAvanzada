@@ -9,11 +9,11 @@ namespace ProyectoG6.Models
 {
     public class ProductoModel
     {
-        public List<MostrarProductos> MostrarProductos()
+        public List<MostrarProductos_Result> MostrarProductos()
         { 
             using (var context = new ProyectoG6Entities())
             {
-                return context.Database.SqlQuery<MostrarProductos>("MostrarProductos").ToList();
+                return context.MostrarProductos().ToList();
             }
         }
 
@@ -23,7 +23,7 @@ namespace ProyectoG6.Models
 
             using (var context = new ProyectoG6Entities())
             {
-                rowsAffected = context.AgregarProducto(entidad.Nombre, entidad.Precio, entidad.Imagen, entidad.Categoria);
+                rowsAffected = context.AgregarProducto(entidad.Nombre, entidad.Precio, entidad.Imagen, entidad.Categoria, entidad.Inventario);
             }
 
             return (rowsAffected > 0 ? true : false);
@@ -53,7 +53,7 @@ namespace ProyectoG6.Models
 
             using (var context = new ProyectoG6Entities())
             {
-                rowsAffected = context.ActualizarProducto(entidad.Nombre, entidad.Precio, entidad.Imagen, entidad.Categoria, entidad.IdProducto);
+                rowsAffected = context.ActualizarProducto(entidad.Nombre, entidad.Precio, entidad.Imagen, entidad.Inventario, entidad.Categoria, entidad.IdProducto);
             }
 
             return (rowsAffected > 0 ? true : false);

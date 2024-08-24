@@ -27,12 +27,16 @@ namespace ProyectoG6.BaseDatos
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Carrito> Carrito { get; set; }
         public virtual DbSet<Categorias> Categorias { get; set; }
+        public virtual DbSet<Comentarios> Comentarios { get; set; }
+        public virtual DbSet<Detalle> Detalle { get; set; }
+        public virtual DbSet<Maestro> Maestro { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     
-        public virtual int ActualizarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> categoria, Nullable<int> idProducto)
+        public virtual int ActualizarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> inventario, Nullable<int> categoria, Nullable<int> idProducto)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -45,6 +49,10 @@ namespace ProyectoG6.BaseDatos
             var imagenParameter = imagen != null ?
                 new ObjectParameter("Imagen", imagen) :
                 new ObjectParameter("Imagen", typeof(string));
+    
+            var inventarioParameter = inventario.HasValue ?
+                new ObjectParameter("Inventario", inventario) :
+                new ObjectParameter("Inventario", typeof(int));
     
             var categoriaParameter = categoria.HasValue ?
                 new ObjectParameter("Categoria", categoria) :
@@ -54,10 +62,10 @@ namespace ProyectoG6.BaseDatos
                 new ObjectParameter("IdProducto", idProducto) :
                 new ObjectParameter("IdProducto", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarProducto", nombreParameter, precioParameter, imagenParameter, categoriaParameter, idProductoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarProducto", nombreParameter, precioParameter, imagenParameter, inventarioParameter, categoriaParameter, idProductoParameter);
         }
     
-        public virtual int AgregarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> categoria)
+        public virtual int AgregarProducto(string nombre, Nullable<decimal> precio, string imagen, Nullable<int> categoria, Nullable<int> inventario)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -75,7 +83,29 @@ namespace ProyectoG6.BaseDatos
                 new ObjectParameter("Categoria", categoria) :
                 new ObjectParameter("Categoria", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarProducto", nombreParameter, precioParameter, imagenParameter, categoriaParameter);
+            var inventarioParameter = inventario.HasValue ?
+                new ObjectParameter("Inventario", inventario) :
+                new ObjectParameter("Inventario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarProducto", nombreParameter, precioParameter, imagenParameter, categoriaParameter, inventarioParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarCarrito_Result> ConsultarCarrito(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCarrito_Result>("ConsultarCarrito", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarFacturas_Result> ConsultarFacturas(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarFacturas_Result>("ConsultarFacturas", idUsuarioParameter);
         }
     
         public virtual int EliminarProducto(Nullable<int> idProducto)
@@ -105,6 +135,32 @@ namespace ProyectoG6.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarProductos_Result>("MostrarProductos");
         }
     
+        public virtual int PagarCarrito(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagarCarrito", idUsuarioParameter);
+        }
+    
+        public virtual int RegistrarCarrito(Nullable<int> idUsuario, Nullable<int> idProducto, Nullable<int> cantidad)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCarrito", idUsuarioParameter, idProductoParameter, cantidadParameter);
+        }
+    
         public virtual int RegistrarUsuario(string nombre, string correo, string contrasenna)
         {
             var nombreParameter = nombre != null ?
@@ -120,6 +176,15 @@ namespace ProyectoG6.BaseDatos
                 new ObjectParameter("Contrasenna", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarUsuario", nombreParameter, correoParameter, contrasennaParameter);
+        }
+    
+        public virtual ObjectResult<FacturaDetalle_Result> FacturaDetalle(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FacturaDetalle_Result>("FacturaDetalle", idUsuarioParameter);
         }
     }
 }

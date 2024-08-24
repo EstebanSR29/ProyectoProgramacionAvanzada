@@ -16,13 +16,6 @@ namespace ProyectoG6.Controllers
 
         [FiltroSeguridad]
         [HttpGet]
-        public ActionResult Home()
-        {
-            return View();
-        }
-
-        [FiltroSeguridad]
-        [HttpGet]
         public ActionResult SobreNosotros()
         {
             return View();
@@ -39,6 +32,7 @@ namespace ProyectoG6.Controllers
         public ActionResult MostrarProductos()
         {
             var respuesta = productoM.MostrarProductos();
+
             return View(respuesta);
         }
 

@@ -1,0 +1,89 @@
+﻿@model List<ProyectoG6.BaseDatos.ConsultarCarrito_Result>
+@{
+    ViewBag.Title = "ConsultarCarrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["Total"].ToString() == "0")
+{
+    <br />
+    <br />
+    <br />
+    <div class="container text-center mt-5">
+        <h2 class="text-center my-4">
+            <i class="fa fa-cart-plus"></i> Carrito Vacío
+        </h2>
+        <p>Tu carrito está vacío. Puedes seguir comprando productos en nuestra tienda.</p>
+        <a href="@Url.Action("MostrarProductos", "Home")" class="btn btn-primary">
+            <i class="fa fa-shopping-cart"></i> Ir a la tienda
+        </a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+}
+else
+{
+    <br />
+    <h2 class="text-center my-4">
+        <i class="fa fa-cart-plus"></i>Carrito
+    </h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table id="tablaCarrito" class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>Producto</th>
+                            <th>Precio Unitario</th>
+                            <th>Cantidad</th>
+                            <th>SubTotal</th>
+                            <th>Impuesto</th>
+                            <th>Total</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">@item.Producto</td>
+                                <td class="align-middle text-right">¢ @item.Precio.ToString("N2")</td>
+                                <td class="align-middle text-center">@item.Cantidad</td>
+                                <td class="align-middle text-right">¢ @item.Subtotal.Value.ToString("N2")</td>
+                                <td class="align-middle text-right">¢ @item.Impuesto.Value.ToString("N2")</td>
+                                <td class="align-middle text-right font-weight-bold">¢ @item.Total.Value.ToString("N2")</td>
+                                <td class="align-middle text-center">
+                                    <button>
+                                        <i class="fa fa-trash"></i> 
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <div>
+                            <h4 class="alert-heading">Total a Cancelar</h4>
+                            <h2 class="font-weight-bold text-primary">¢ @decimal.Parse(Session["Total"].ToString()).ToString("N2")</h2>
+                        </div>
+                        <div>
+                            @using (Html.BeginForm("PagarCarrito", "Carrito"))
+                            {
+                            <button type="submit" class="btn btn-primary">Realizar pago</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+}
+

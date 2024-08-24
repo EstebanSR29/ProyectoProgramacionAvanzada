@@ -13,6 +13,9 @@ namespace ProyectoG6.Controllers
     {
         UsuarioModel usuarioM = new UsuarioModel();
 
+        CarritoModel carritoM = new CarritoModel();
+
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -27,9 +30,10 @@ namespace ProyectoG6.Controllers
             if (respuesta != null)
             {
                 Session["NombreUsuario"] = respuesta.Nombre;
-                Session["ConsecutivoUsuario"] = respuesta.IdUsuario;
+                Session["IdUsuario"] = respuesta.IdUsuario;
                 Session["RolUsuario"] = respuesta.IdRol.ToString();
-                return RedirectToAction("Home", "Home");
+                CargarVariablesCarrito();
+                return RedirectToAction("Home", "Login");
             }
             else
             {
@@ -38,6 +42,15 @@ namespace ProyectoG6.Controllers
             }
 
         }
+
+        [FiltroSeguridad]
+        [HttpGet]
+        public ActionResult Home()
+        {
+            CargarVariablesCarrito();
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult Registro()
@@ -64,6 +77,25 @@ namespace ProyectoG6.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index", "Login");
+        }
+
+        [FiltroSeguridad]
+        [HttpPost]
+        public ActionResult RegistrarCarrito(int IdProducto, int Cantidad)
+        {
+            carritoM.RegistrarCarrito(IdProducto, Cantidad);
+
+            CargarVariablesCarrito();
+
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        private void CargarVariablesCarrito()
+        {
+            var carritoActual = carritoM.ConsultarCarrito();
+            Session["Cantidad"] = carritoActual.Sum(c => c.Cantidad).ToString();
+            Session["SubTotal"] = carritoActual.Sum(c => c.Subtotal).ToString();
+            Session["Total"] = carritoActual.Sum(c => c.Total).ToString();
         }
 
     }

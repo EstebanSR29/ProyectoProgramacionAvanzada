@@ -11,13 +11,18 @@ namespace ProyectoG6.BaseDatos
 {
     using System;
     
-    public partial class MostrarProductos_Result
+    public partial class ConsultarCarrito_Result
     {
+        public int IdCarrito { get; set; }
+        public int IdUsuario { get; set; }
+        public string Usuario { get; set; }
         public int IdProducto { get; set; }
-        public string Nombre { get; set; }
+        public string Producto { get; set; }
         public decimal Precio { get; set; }
-        public string Imagen { get; set; }
-        public string Categoria { get; set; }
-        public int Inventario { get; set; }
+        public int Cantidad { get; set; }
+        public Nullable<decimal> Subtotal { get; set; }
+        public Nullable<decimal> Impuesto { get; set; }
+        public Nullable<decimal> Total { get; set; }
+        public System.DateTime Fecha { get; set; }
     }
 }
