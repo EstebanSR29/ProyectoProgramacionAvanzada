@@ -60,5 +60,16 @@ namespace ProyectoG6.Models
                 return context.FacturaDetalle(IdUsuario).ToList();
             }
         }
+        public bool EliminarDelCarrito(int IdCarrito, int IdProducto)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new ProyectoG6Entities())
+            {
+                rowsAffected = context.EliminiarDelCarrito(IdCarrito, IdProducto);
+            }
+
+            return (rowsAffected > 0 ? true : false);
+        }
     }
 }

@@ -2,60 +2,64 @@
 
 @{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
-    ViewBag.Title = "LOGIN";
-}    
+    ViewBag.Title = "Login";
+}
+<br />
+<section class="p-3 p-md-4 p-xl-5 min-vh-100 d-flex align-items-center justify-content-center">
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 bg-white text-dark border border-light border-1 rounded-3 shadow-sm">
+                <div class="d-flex flex-column justify-content-between h-100 p-4">
+                    <h3 class="m-0 text-center mb-4">
+                        <span class="text-dark fs-3">¡BIENVENIDO A </span>
+                        <span class="text-success fs-3">SPORTSHOP!</span>
+                    </h3>
+                    <img class="img-fluid rounded mx-auto my-4" loading="lazy" src="~/assets/img/LOGO.png" width="245" height="80" alt="Logo">
+                    <p class="mb-0 text-center fs-5">¿No tiene una cuenta? <a href="@Url.Action("Registro", "Login")" class="link-primary text-decoration-none">Crear Cuenta</a></p>
+                </div>
+            </div>
 
-        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-
-                        <div class="d-flex justify-content-center py-4">
-                            <a class="logo d-flex align-items-center w-auto">
-                                <img src="~/assets/img/LOGO.png" class="logo-img"/>
-                            </a>
+            <div class="col-12 col-md-6 bsb-tpl-bg-lotion rounded-3 shadow-sm">
+                <div class="p-4">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h3 class="text-center">Inicio de Sesión</h3>
                         </div>
-
-                        <div class="card mb-3">
-
-                            <div class="card-body">
-
-                                <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Inicio de Sesion</h5>
-                                </div>
-
-                                @using (Html.BeginForm("Index", "Login"))
+                    </div>
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                    {
+                        <div class="row gy-3 gy-md-4 overflow-hidden">
+                            <div class="col-12">
+                                @if (ViewBag.ErrorMessage != null)
                                 {
-
-                                    <div class="col-12">
-                                        <div class="input-group has-validation">
-                                            @Html.TextBoxFor(m => m.Correo, new { @type = "email", @class = "form-control", @placeholder = "Correo Electronico", required = "required" })
-                                        </div>
-                                    </div>
-                                    <br />
-
-                                    <div class="col-12">
-                                        @Html.TextBoxFor(m => m.Contrasena, new { @type = "password", @class = "form-control", @placeholder = "Contraseña", required = "required" })
-                                    </div>
-                                    <br />
-
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Ingresar</button>
-                                    </div>
-                                    <br />
-
-                                    <div class="col-12">
-                                        <p class="small mb-0">¿No tienes cuenta? <a href="@Url.Action("Registro", "Login")">Crear cuenta</a></p>
+                                    <div class="alert alert-danger alert-dismissible fade show text-center fs-4" role="alert">
+                                        @ViewBag.ErrorMessage
                                     </div>
                                 }
+                                <label for="correo" class="form-label fs-5">Correo Electrónico: </label>
+                                @Html.TextBoxFor(m => m.Correo, new { @type = "email", @class = "form-control fs-4", required = "required", id = "correo" })
+                            </div>
+                            <div class="col-12">
+                                <label for="password" class="form-label fs-5">Contraseña: </label>
+                                @Html.TextBoxFor(m => m.Contrasena, new { @type = "password", @class = "form-control fs-4", required = "required", id = "password" })
+                            </div>
+                            <div class="col-12">
+                                <div class="d-grid">
+                                    <button class="btn bsb-btn-xl btn-primary fs-4" type="submit">Iniciar Sesión</button>
+                                </div>
                             </div>
                         </div>
-
+                    }
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <hr class="mt-4 mb-4 border-secondary-subtle">
+                            <div class="text-end">
+                                <a href="@Url.Action("RecuperarContrasenna", "Login")" class="link-danger text-decoration-none fs-5">¿Olvidó su contraseña?</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-    
+</section>

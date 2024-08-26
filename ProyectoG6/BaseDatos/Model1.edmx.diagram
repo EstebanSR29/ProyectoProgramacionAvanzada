@@ -4,24 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6b56d9849703499aab2305ed02a46e2d" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoG6Model.Carrito" Width="1.5" PointX="7.125" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Categorias" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Comentarios" Width="1.5" PointX="8" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Detalle" Width="1.5" PointX="11" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Maestro" Width="1.5" PointX="13.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Productos" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Roles" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoG6Model.Usuarios" Width="1.5" PointX="3.125" PointY="4" IsExpanded="true" />
+      <Diagram DiagramId="4087097f08d04567988434f6ed113ab4" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoG6Model.Carrito" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Categorias" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Comentarios" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Detalle" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Maestro" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Productos" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Roles" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoG6Model.Usuarios" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="ProyectoG6Model.FK_Carrito_Productos" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoG6Model.FK_Carrito_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoG6Model.FK_Categoria" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoG6Model.FK_Comentarios_Producto" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoG6Model.FK_Comentarios_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoG6Model.FK_Detalle_Maestro" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoG6Model.FK_Maestro_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoG6Model.FK_Usuarios_Roles" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoG6Model.FK_Detalle_Maestro" />
-        <AssociationConnector Association="ProyectoG6Model.FK_Detalle_Productos" />
-        <AssociationConnector Association="ProyectoG6Model.FK_Maestro_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

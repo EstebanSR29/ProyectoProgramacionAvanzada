@@ -1,4 +1,5 @@
-﻿using ProyectoG6.Entidades;
+﻿using ProyectoG6.BaseDatos;
+using ProyectoG6.Entidades;
 using ProyectoG6.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace ProyectoG6.Controllers
 
         CarritoModel carritoM = new CarritoModel();
 
+        ProductoModel productoM = new ProductoModel();
+
 
         [HttpGet]
         public ActionResult Index()
@@ -29,7 +32,8 @@ namespace ProyectoG6.Controllers
 
             if (respuesta != null)
             {
-                Session["NombreUsuario"] = respuesta.Nombre;
+                Session["NombreUsuario"] = respuesta.Nombre.ToString();
+                Session["CorreoUsuario"] = respuesta.Correo;
                 Session["IdUsuario"] = respuesta.IdUsuario;
                 Session["RolUsuario"] = respuesta.IdRol.ToString();
                 CargarVariablesCarrito();
@@ -37,7 +41,7 @@ namespace ProyectoG6.Controllers
             }
             else
             {
-                ViewBag.msj = "Usuario incorrecto o no existe";
+                ViewBag.ErrorMessage = "El correo o la contraseña es incorrecto.";
                 return View();
             }
 
@@ -47,8 +51,11 @@ namespace ProyectoG6.Controllers
         [HttpGet]
         public ActionResult Home()
         {
+
             CargarVariablesCarrito();
-            return View();
+            var respuesta = productoM.VistaDinamicaProductos();
+
+            return View(respuesta);
         }
 
 
@@ -66,7 +73,7 @@ namespace ProyectoG6.Controllers
                 return RedirectToAction("Index", "Login");
             else
             {
-                ViewBag.msj = "Ya existe un usuario con ese correo registrado";
+                ViewBag.ErrorMessage = "Ya existe un usuario con ese correo registrado";
                 return View();
             }
         }
@@ -98,5 +105,61 @@ namespace ProyectoG6.Controllers
             Session["Total"] = carritoActual.Sum(c => c.Total).ToString();
         }
 
+        [FiltroSeguridad]
+        [HttpGet]
+        public ActionResult PerfilUsuario(int IdUsuario)
+        {
+            var respuesta = usuarioM.PerfilUsuario(IdUsuario);
+
+            return View(respuesta);
+        }
+
+
+        [FiltroSeguridad]
+        [HttpGet]
+        public ActionResult CambiarContrasenna()
+        {
+            return View();
+        }
+
+        [FiltroSeguridad]
+        [HttpPost]
+        public ActionResult CambiarContrasenna(int IdUsuario, string ContrasennaActual, string NuevaContrasenna, string ConfirmarContrasenna)
+        {
+            var respuesta = usuarioM.CambiarContrasena(IdUsuario, ContrasennaActual, NuevaContrasenna, ConfirmarContrasenna);
+
+            if (respuesta == false)
+            {
+              
+                ViewBag.ErrorMessage = "Hubo un problema al cambiar la contraseña. Verifique los datos ingresados.";
+                return View("CambiarContrasenna");
+            }
+
+            return RedirectToAction("PerfilUsuario", "Login", new { IdUsuario = IdUsuario });
+        }
+
+        [FiltroSeguridad]
+        [HttpGet]
+        public ActionResult EditarPerfil(int IdUsuario)
+        {
+            var respuesta = usuarioM.ConsultarUsuario(IdUsuario);
+            return View(respuesta);
+        }
+
+        [FiltroSeguridad]
+        [HttpPost]
+        public ActionResult EditarPerfil(int IdUsuario, string Nombre, string Correo)
+        {
+            var respuesta = usuarioM.EditarPerfil(IdUsuario, Nombre, Correo);
+
+            if (respuesta == false)
+            {
+
+                TempData["ErrorMessage"] = "El correo ingresado ya está en uso.";
+                return RedirectToAction("EditarPerfil", "Login", new { IdUsuario = IdUsuario });
+            }
+
+            return RedirectToAction("PerfilUsuario", "Login", new { IdUsuario = IdUsuario });
+        }
     }
 }

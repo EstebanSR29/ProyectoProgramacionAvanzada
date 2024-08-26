@@ -37,14 +37,24 @@
                             <tr>
                                 <td class="text-center">@item.Nombre</td>
                                 <td class="text-center">@item.Cantidad</td>
-                                <td class="text-center">@item.PrecioUnitario</td>
-                                <td class="text-center">@item.Subtotal</td>
-                                <td class="text-center">@item.Impuesto</td>
-                                <td class="text-center">@item.Total</td>
+                                <td class="text-center">₡ @item.PrecioUnitario</td>
+                                <td class="text-center">₡ @item.Subtotal</td>
+                                <td class="text-center">₡ @item.Impuesto</td>
+                                <td class="text-center">₡ @item.Total</td>
                             </tr>
                         }
                     </tbody>
                 </table>
+            </div>
+            <div class="text-end mt-4">
+                <h4>
+                    <strong>Impuestos:</strong>
+                    @Html.Raw("<span class='text-success'>₡" + Model.Sum(item => item.Impuesto).ToString("N2") + "</span>")
+                </h4>
+                <h4>
+                    <strong>Total a pagar:</strong>
+                    @Html.Raw("<span class='text-success'>₡" + Model.Sum(item => item.Total).ToString("N2") + "</span>")
+                </h4>
             </div>
         </div>
     </div>

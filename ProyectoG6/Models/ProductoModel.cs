@@ -70,5 +70,47 @@ namespace ProyectoG6.Models
 
             return (rowsAffected > 0 ? true : false);
         }
+
+        public List<DetallesProducto_Result> DetallesProducto(int IdProducto)
+        {
+            using (var context = new ProyectoG6Entities())
+            {
+                return context.DetallesProducto(IdProducto).ToList();
+            }
+        }
+
+        public List<ObtenerComentarios_Result> ObtenerComentarios(int IdProducto)
+        {
+            using (var context = new ProyectoG6Entities())
+            {
+                return context.ObtenerComentarios(IdProducto).ToList();
+            }
+        }
+
+        public bool Comentar(int IdUsuario, int IdProducto, string Comentariotxt, int Calificacion)
+        {
+
+            var rowsAffected = 0;
+
+            using (var context = new ProyectoG6Entities())
+            {
+                rowsAffected = context.Comentar(IdUsuario, IdProducto, Comentariotxt, Calificacion);
+            }
+
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public List<Productos> VistaDinamicaProductos()
+        {
+            using (var context = new ProyectoG6Entities())
+            {
+                var productos = context.Productos
+                                .OrderBy(p => Guid.NewGuid())
+                                .Take(3)
+                                .ToList();
+
+                return productos;
+            }
+        }
     }
 }

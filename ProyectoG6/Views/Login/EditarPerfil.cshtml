@@ -1,0 +1,48 @@
+﻿@model ProyectoG6.BaseDatos.Usuarios
+
+@{
+    ViewBag.Title = "EditarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <button onclick="window.location.href='@Url.Action("PerfilUsuario", "Login", new { IdUsuario = @Session["IdUsuario"] })';" class="btn btn-primary me-3">
+            <i class="fa fa-arrow-circle-left"></i> Volver
+        </button>
+        <h2 class="text-center flex-grow-1 mb-0">Actualizar Perfil</h2>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="col-md-8 col-lg-6 mx-auto">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        <div class="border p-4 rounded shadow-sm bg-light">
+            @using (Html.BeginForm("EditarPerfil", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.HiddenFor(m => m.IdUsuario)
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.Nombre, new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @class = "form-control", @placeholder = "Nombre", required = "required" })
+                </div>
+
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.Correo, new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(m => m.Correo, new { @type = "email", @class = "form-control", @placeholder = "Correo Electrónico", required = "required" })
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Actualizar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />  

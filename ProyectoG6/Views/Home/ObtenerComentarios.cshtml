@@ -1,0 +1,78 @@
+﻿@model List<ProyectoG6.BaseDatos.ObtenerComentarios_Result>
+
+@{
+    ViewBag.Title = "ObtenerComentarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var idProducto = ViewBag.IdProducto;
+}
+
+<div class="container mt-4">
+    <div class="d-flex align-items-center mb-4">
+        <button onclick="window.location.href='@Url.Action("DetallesProducto", "Home", new { IdProducto = ViewBag.IdProducto })';" class="btn btn-primary me-3">
+            <i class="fa fa-arrow-circle-left"></i> Volver
+        </button>
+        <h2 class="mb-0">Comentarios</h2>
+    </div>
+
+    <div class="comments-container p-1 rounded shadow-sm bg-white mb-1">
+        @if (Model == null || !Model.Any())
+        {
+            <div class="alert alert-info text-center" role="alert">
+                No hay comentarios aún.
+            </div>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-success text-white">
+                        <div class="d-flex align-items-center">
+                            <span class="font-weight-bold me-2">@item.Usuario</span>
+                            <div class="rating">
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    <i class="fa fa-star @(i < item.Calificacion ? "text-white" : "text-muted")"></i>
+                                }
+                            </div>
+                        </div>
+                        <span class="text-white small">@item.Fecha.ToString("HH:mm tt dd/M/yy")</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@item.Comentariotxt</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <br />
+    <form method="post" action="@Url.Action("Comentar", "Home")" class="p-4 border rounded shadow-sm">
+        <h3 class="mb-3">Deja tu comentario</h3>
+        <input type="hidden" id="IdProducto" name="IdProducto" value="@ViewBag.IdProducto" />
+        <input type="hidden" id="IdUsuario" name="IdUsuario" value="@Session["IdUsuario"]" />
+        <div class="mb-3">
+            <label for="comentario" class="form-label">Comentario</label>
+            <textarea class="form-control" id="comentariotxt" name="comentariotxt" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="calificacion" class="form-label">Calificación</label>
+            <select class="form-select" id="calificacion" name="calificacion" required>
+                <option value="" disabled selected>Selecciona una calificación</option>
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Comentar</button>
+    </form>
+</div>
+
+<style>
+    .comments-container {
+        max-height: 200px;
+        overflow-y: auto;
+        border-width: 2px;
+    }
+</style>

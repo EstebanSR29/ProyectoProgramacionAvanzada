@@ -14,6 +14,7 @@ namespace ProyectoG6.Controllers
         [HttpGet]
         public ActionResult ConsultarCarrito()
         {
+            CargarVariablesCarrito();
             var datos = carritoM.ConsultarCarrito();
             return View(datos);
         }
@@ -37,6 +38,30 @@ namespace ProyectoG6.Controllers
         {
             var datos = carritoM.FacturaDetalle(IdUsuario);
             return View(datos);
+        }
+
+        [FiltroSeguridad]
+        [HttpGet]
+        public ActionResult EliminarDelCarrito(int IdCarrito, int IdProducto)
+        {
+
+            var respuesta = carritoM.EliminarDelCarrito(IdCarrito, IdProducto);
+
+            if (respuesta)
+                return RedirectToAction("ConsultarCarrito", "Carrito");
+            else
+            {
+                ViewBag.msj = "No se logro eliminar el producto del carrito";
+                return View();
+            }
+        }
+
+        private void CargarVariablesCarrito()
+        {
+            var carritoActual = carritoM.ConsultarCarrito();
+            Session["Cantidad"] = carritoActual.Sum(c => c.Cantidad).ToString();
+            Session["SubTotal"] = carritoActual.Sum(c => c.Subtotal).ToString();
+            Session["Total"] = carritoActual.Sum(c => c.Total).ToString();
         }
     }
 }

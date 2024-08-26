@@ -10,19 +10,14 @@
 namespace ProyectoG6.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Detalle
+    public partial class ObtenerComentarios_Result
     {
-        public int IdDetalle { get; set; }
-        public int IdMaestro { get; set; }
+        public int IdComentario { get; set; }
         public int IdProducto { get; set; }
-        public int Cantidad { get; set; }
-        public decimal PrecioUnitario { get; set; }
-        public decimal Subtotal { get; set; }
-        public decimal Impuesto { get; set; }
-        public decimal Total { get; set; }
-    
-        public virtual Maestro Maestro { get; set; }
+        public string Usuario { get; set; }
+        public string Comentariotxt { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public int Calificacion { get; set; }
     }
 }

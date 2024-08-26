@@ -19,7 +19,6 @@ namespace ProyectoG6.BaseDatos
         {
             this.Carrito = new HashSet<Carrito>();
             this.Comentarios = new HashSet<Comentarios>();
-            this.Detalle = new HashSet<Detalle>();
         }
     
         public int IdProducto { get; set; }
@@ -28,13 +27,12 @@ namespace ProyectoG6.BaseDatos
         public string Imagen { get; set; }
         public int Categoria { get; set; }
         public int Inventario { get; set; }
+        public int Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Carrito> Carrito { get; set; }
         public virtual Categorias Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comentarios> Comentarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle> Detalle { get; set; }
     }
 }

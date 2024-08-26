@@ -1,0 +1,108 @@
+﻿@model List<ProyectoG6.BaseDatos.DetallesProducto_Result>
+
+@{
+    ViewBag.Title = "DetallesProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <button onclick="window.location.href='@Url.Action("MostrarProductos", "Home")';" class="btn btn-primary me-3">
+            <i class="fa fa-arrow-circle-left"></i> Volver
+        </button>
+        <h2 class="text-center flex-grow-1 mb-0">Detalles del Producto</h2>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-md-10 col-lg-8 mb-4">
+            <div class="d-flex flex-column flex-lg-row align-items-start bg-white p-4 rounded shadow-lg border border-light">
+                <div class="flex-shrink-0 me-lg-4 mb-3 mb-lg-0" style="max-width: 300px;">
+                    <img src="@item.Imagen" class="img-fluid rounded" alt="@item.Nombre" style="width: 100%; height: auto; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                </div>
+
+                <div class="flex-grow-1 ms-lg-4">
+                    <h3 class="mb-3">@item.Nombre</h3>
+                    <p class="fs-4 text-primary">₡ @item.Precio</p>
+                    <p class="fs-5 text-muted">Categoría: @item.Categoria</p>
+                    <p class="fs-5">Inventario: @item.Inventario</p>
+
+                    @if (item.Inventario > 0)
+                    {
+                        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
+                            <input id="prd-@item.IdProducto" type="number" class="form-control mb-2 mb-sm-0 me-2" style="width: 100px; max-width: 100px; text-align: center;" value="1" min="1" max="@item.Inventario"
+                                   onkeypress="return ValidarNumeros(this.id)">
+                            <a onclick="AgregarProducto(@item.IdProducto, @item.Inventario);" class="btn btn-primary btn-lg text-white px-3 py-2" style="transition: background-color 0.3s, transform 0.3s; border-radius: 4px;"
+                               onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='scale(1.05)';"
+                               onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='scale(1)';">
+                                Añadir al Carrito
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mt-3 d-flex justify-content-center">
+                            <p class="text-danger font-weight-bold fs-3">AGOTADO</p>
+                        </div>
+                    }
+
+                    <a href="@Url.Action("ObtenerComentarios", "Home", new { IdProducto = item.IdProducto })" class="btn btn-warning btn-sm mt-3 d-block mx-auto" title="Comentarios">
+                        <i class="fas fa-comment"></i> Ver Comentarios
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<script>
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        return (charCode >= 48 && charCode <= 57);
+    }
+
+    function AgregarProducto(IdProducto, Inventario) {
+        let cantidadIngresada = $("#prd-" + IdProducto).val();
+
+        if (cantidadIngresada > Inventario || cantidadIngresada <= 0) {
+            MostrarMensaje("¡Cantidad inválida!", "Ingrese una cantidad mayor a 0 y menor o igual a " + Inventario, "warning");
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/Login/RegistrarCarrito',
+            dataType: 'json',
+            data: {
+                "IdProducto": IdProducto,
+                "Cantidad": cantidadIngresada
+            },
+            success: function (data) {
+                MostrarMensaje("¡Añadido!", "Producto añadido al carrito", "success", IdProducto);
+            },
+            error: function () {
+                MostrarMensaje("¡Error!", "Ocurrió un error al añadir el producto al carrito. Por favor, inténtelo de nuevo.", "error");
+            }
+        });
+    }
+
+    function MostrarMensaje(titulo, mensaje, icono, IdProducto) {
+        Swal.fire({
+            title: titulo,
+            text: mensaje,
+            icon: icono,
+            confirmButtonText: "Aceptar",
+            showCancelButton: false
+        }).then((result) => {
+            if (result.isConfirmed && icono === "success") {
+                window.location.href = '@Url.Action("MostrarProductos", "Home")';
+            }
+        });
+    }
+</script>

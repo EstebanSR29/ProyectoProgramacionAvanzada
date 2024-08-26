@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Cambiar Contraseña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="d-flex align-items-center mb-4">
+        <button onclick="window.location.href='@Url.Action("PerfilUsuario", "Login", new { IdUsuario = @Session["IdUsuario"] })';" class="btn btn-primary me-3">
+            <i class="fa fa-arrow-circle-left"></i> Volver
+        </button>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+            <form method="post" action="@Url.Action("CambiarContrasenna", "Login")" class="p-4 border rounded shadow-sm bg-light">
+                <h3 class="mb-3 text-center">Actualizar Contraseña</h3>
+                <input type="hidden" id="IdUsuario" name="IdUsuario" value="@Session["IdUsuario"]" />
+                <div class="mb-3">
+                    <label for="ContrasennaActual" class="form-label">Contraseña Actual</label>
+                    <input type="password" class="form-control" id="ContrasennaActual" name="ContrasennaActual" required />
+                </div>
+                <div class="mb-3">
+                    <label for="NuevaContrasenna" class="form-label">Nueva Contraseña</label>
+                    <input type="password" class="form-control" id="NuevaContrasenna" name="NuevaContrasenna" required />
+                </div>
+                <div class="mb-3">
+                    <label for="ConfirmarContrasenna" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="ConfirmarContrasenna" name="ConfirmarContrasenna" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />

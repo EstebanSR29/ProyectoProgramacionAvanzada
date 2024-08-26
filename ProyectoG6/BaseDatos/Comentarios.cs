@@ -17,8 +17,9 @@ namespace ProyectoG6.BaseDatos
         public int IdComentario { get; set; }
         public int IdProducto { get; set; }
         public int IdUsuario { get; set; }
-        public string Comentario { get; set; }
+        public string Comentariotxt { get; set; }
         public System.DateTime Fecha { get; set; }
+        public int Calificacion { get; set; }
     
         public virtual Productos Productos { get; set; }
         public virtual Usuarios Usuarios { get; set; }

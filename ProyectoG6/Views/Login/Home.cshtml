@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<ProyectoG6.BaseDatos.Productos>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "HOME";
 }
@@ -101,32 +103,35 @@
         <div class="col-lg-6 m-auto">
             <h1 class="h1">Nuestras Categorias</h1>
             <p>
-                "Explora nuestras diversas categorías en SportShop y encuentra todo lo que necesitas para tu pasión por el deporte.
+                "Explora nuestras diversas categorías en SportShop y encuentra todo lo que necesitas para tu pasión por el deporte."
             </p>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="~/asset/img/ropadeportiva.png" class="rounded-circle img-fluid border fixed-size"></a>
+            <img src="~/asset/img/ropadeportiva.png" class="rounded-circle img-fluid border fixed-size">
             <h5 class="text-center mt-3 mb-3">Ropa Deportiva</h5>
-            <p class="text-center"><a class="btn btn-success">Comprar</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="~/asset/img/tenis4.png" class="rounded-circle img-fluid border fixed-size"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Calzado</h2>
-            <p class="text-center"><a class="btn btn-success">Comprar</a></p>
+            <img src="~/asset/img/tenis4.png" class="rounded-circle img-fluid border fixed-size">
+            <h5 class="text-center mt-3 mb-3">Calzado</h5>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="~/asset/img/botella.png" class="rounded-circle img-fluid border fixed-size"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Accesorios</h2>
-            <p class="text-center"><a class="btn btn-success">Comprar</a></p>
+            <img src="~/asset/img/botella.png" class="rounded-circle img-fluid border fixed-size">
+            <h5 class="text-center mt-3 mb-3">Accesorios</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center mt-4">
+            <a href="@Url.Action("MostrarProductos", "Home")" class="btn btn-success">Ver Productos</a>
         </div>
     </div>
 </section>
 
+
 <section class="bg-light">
     <div class="container py-5">
-        <div class="row text-center py-3">
+        <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
                 <h1 class="h1">Productos Destacados</h1>
                 <p>
@@ -135,79 +140,22 @@
                 </p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="~/asset/img/tenisNB.png" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$240.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Calzado New Balance</a>
-                        <p class="card-text">
-                            Lo mejor en calzado.
-                        </p>
-                        <p class="text-muted">Reviews (35)</p>
+        <div class="row d-flex justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-4 p-5 mt-3">
+                    <div class="card h-100 text-center" style="width: 18rem;">
+                        <a href="@Url.Action("DetallesProducto", "Home", new { IdProducto = item.IdProducto })" class="text-decoration-none">
+                            <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre" style="height: 250px; object-fit: cover;">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nombre</h5>
+                            <p class="card-text">₡ @item.Precio</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="~/asset/img/camisanike.png" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$480.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Camiseta Nike</a>
-                        <p class="card-text">
-                            Con Tela Dri Fit.
-                        </p>
-                        <p class="text-muted">Reviews (48)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="~/asset/img/bolabasket.png" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$360.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Baloncesto ball</a>
-                        <p class="card-text">
-                            Material mejorado, tamaño oficial.
-                        </p>
-                        <p class="text-muted">Reviews (74)</p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
+

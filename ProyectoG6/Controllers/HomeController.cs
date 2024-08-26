@@ -14,6 +14,8 @@ namespace ProyectoG6.Controllers
     {
         ProductoModel productoM = new ProductoModel();
 
+        CarritoModel carritoM = new CarritoModel();
+
         [FiltroSeguridad]
         [HttpGet]
         public ActionResult SobreNosotros()
@@ -106,10 +108,54 @@ namespace ProyectoG6.Controllers
             }
         }
 
+        [FiltroSeguridad]
         [HttpGet]
-        public ActionResult Compra()
+        public ActionResult DetallesProducto(int IdProducto)
         {
-            return View();
+            CargarVariablesCarrito();
+
+            var respuesta = productoM.DetallesProducto(IdProducto);
+            
+            return View(respuesta);
+        }
+
+        [FiltroSeguridad]
+        [HttpGet]
+        public ActionResult ObtenerComentarios(int IdProducto)
+        {
+            var respuesta = productoM.ObtenerComentarios(IdProducto);
+
+            ViewBag.IdProducto = IdProducto;
+
+            return View(respuesta);
+        }
+
+        [FiltroSeguridad]
+        [HttpPost]
+        public ActionResult Comentar(int IdUsuario, int IdProducto, string Comentariotxt, int Calificacion)
+        {
+            
+            var respuesta = productoM.Comentar(IdUsuario, IdProducto, Comentariotxt, Calificacion);
+
+            if (respuesta)
+            {
+                ViewBag.IdProducto = IdProducto;
+                var comentarios = productoM.ObtenerComentarios(IdProducto);
+                return View("ObtenerComentarios", comentarios);
+            }
+               
+            else
+            {
+                ViewBag.msj = "Error al agregar el producto";
+                return View();
+            }
+        }
+        private void CargarVariablesCarrito()
+        {
+            var carritoActual = carritoM.ConsultarCarrito();
+            Session["Cantidad"] = carritoActual.Sum(c => c.Cantidad).ToString();
+            Session["SubTotal"] = carritoActual.Sum(c => c.Subtotal).ToString();
+            Session["Total"] = carritoActual.Sum(c => c.Total).ToString();
         }
 
     }

@@ -146,6 +146,9 @@
     <Compile Include="BaseDatos\Detalle.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\DetallesProducto_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\FacturaDetalle_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -173,6 +176,9 @@
     <Compile Include="BaseDatos\MostrarProductos_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\ObtenerComentarios_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Productos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -183,9 +189,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CarritoController.cs" />
-    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Entidades\Comentario.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,6 +202,7 @@
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="BaseDatos\BaseDatos.sql" />
     <Content Include="BaseDatos\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -206,17 +213,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="css\sb-admin-2.css" />
+    <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Views\Carrito\ConsultarCarrito.cshtml" />
-    <EntityDeploy Include="BaseDatos\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="BaseDatos\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Carrito\ConsultarFacturas.cshtml" />
     <Content Include="Views\Carrito\FacturaDetalle.cshtml" />
-    <None Include="Views\Home\Compra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\style.css" />
@@ -607,7 +608,6 @@
     <Content Include="asset\webfonts\fa-regular-400.svg" />
     <Content Include="asset\webfonts\fa-solid-900.svg" />
     <Content Include="asset\webfonts\slick.svg" />
-    <Content Include="BaseDatos\ProcedimientosAlmacenados.txt" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -712,6 +712,13 @@
     <Content Include="asset\webfonts\slick.eot" />
     <Content Include="asset\webfonts\slick.ttf" />
     <Content Include="asset\webfonts\slick.woff" />
+    <EntityDeploy Include="BaseDatos\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="BaseDatos\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -743,6 +750,11 @@
     <Content Include="Views\Home\MostrarProductos.cshtml" />
     <Content Include="Views\Home\AgregarProducto.cshtml" />
     <Content Include="Views\Home\ActualizarProducto.cshtml" />
+    <Content Include="Views\Home\DetallesProducto.cshtml" />
+    <Content Include="Views\Home\ObtenerComentarios.cshtml" />
+    <Content Include="Views\Login\PerfilUsuario.cshtml" />
+    <Content Include="Views\Login\CambiarContrasenna.cshtml" />
+    <Content Include="Views\Login\EditarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

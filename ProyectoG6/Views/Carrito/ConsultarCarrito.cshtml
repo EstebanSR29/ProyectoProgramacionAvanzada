@@ -50,15 +50,16 @@ else
                         {
                             <tr>
                                 <td class="align-middle">@item.Producto</td>
-                                <td class="align-middle text-right">¢ @item.Precio.ToString("N2")</td>
+                                <td class="align-middle text-center">¢ @item.Precio.ToString("N2")</td>
                                 <td class="align-middle text-center">@item.Cantidad</td>
-                                <td class="align-middle text-right">¢ @item.Subtotal.Value.ToString("N2")</td>
-                                <td class="align-middle text-right">¢ @item.Impuesto.Value.ToString("N2")</td>
-                                <td class="align-middle text-right font-weight-bold">¢ @item.Total.Value.ToString("N2")</td>
+                                <td class="align-middle text-center">¢ @item.Subtotal.Value.ToString("N2")</td>
+                                <td class="align-middle text-center">¢ @item.Impuesto.Value.ToString("N2")</td>
+                                <td class="align-middle text-center font-weight-bold">¢ @item.Total.Value.ToString("N2")</td>
                                 <td class="align-middle text-center">
-                                    <button>
-                                        <i class="fa fa-trash"></i> 
-                                    </button>
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Eliminar"
+                                       onclick="ConfirmarEliminar('@item.Producto', '@Url.Action("EliminarDelCarrito", "Carrito", new { IdCarrito = item.IdCarrito ,IdProducto = item.IdProducto })');">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }
@@ -70,11 +71,12 @@ else
                             <h4 class="alert-heading">Total a Cancelar</h4>
                             <h2 class="font-weight-bold text-primary">¢ @decimal.Parse(Session["Total"].ToString()).ToString("N2")</h2>
                         </div>
+
                         <div>
-                            @using (Html.BeginForm("PagarCarrito", "Carrito"))
-                            {
-                            <button type="submit" class="btn btn-primary">Realizar pago</button>
-                            }
+                            <a href="javascript:void(0);" class="btn btn-primary" title="Realizar pago"
+                               onclick="ConfirmarCompra('@Url.Action("PagarCarrito", "Carrito")');">
+                                <i class="fa fa-credit-card"></i> Realizar pago
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -87,3 +89,48 @@ else
     <br />
 }
 
+<script>
+    function ConfirmarEliminar(Producto, urlEliminar) {
+        Swal.fire({
+            title: "¿Eliminar?",
+            html: "¿Deseas eliminar <strong>" + Producto + "</strong> del carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = urlEliminar;
+            }
+        });
+    }
+
+    function ConfirmarCompra(urlPago) {
+        Swal.fire({
+            title: "¿Confirmar pago?",
+            text: "¿Seguro que desea realizar el pago de los productos?",
+            icon: "question",
+            showConfirmButton: true,
+            confirmButtonText: "Confirmar",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: urlPago,
+                    type: 'POST',
+                    success: function(response) {
+                        Swal.fire({
+                            title: "¡Pago realizado!",
+                            text: "El pago ha sido realizado exitosamente.",
+                            icon: "success",
+                            confirmButtonText: "Aceptar"
+                        }).then(() => {
+                            window.location.href = '@Url.Action("Home", "Login")';
+                        });
+                    }
+                });
+            }
+        });
+    }
+</script>
