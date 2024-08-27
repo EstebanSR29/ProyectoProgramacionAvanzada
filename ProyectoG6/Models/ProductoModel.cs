@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using ProyectoG6.BaseDatos;
@@ -9,11 +10,12 @@ namespace ProyectoG6.Models
 {
     public class ProductoModel
     {
-        public List<MostrarProductos_Result> MostrarProductos()
+        public List<MostrarProductos_Result> MostrarProductos(string categoria = null)
         { 
+            
             using (var context = new ProyectoG6Entities())
             {
-                return context.MostrarProductos().ToList();
+                return context.MostrarProductos(categoria).ToList();
             }
         }
 
@@ -36,6 +38,16 @@ namespace ProyectoG6.Models
                         select x).ToList();
             }
         }
+        public List<string> MenuCat()
+        {
+            using (var context = new ProyectoG6Entities())
+            {
+                return context.Categorias
+                              .Select(c => c.Categoria)
+                              .ToList() ?? new List<string>();
+            }
+        }
+
 
         public Productos ConsultarProducto(int IdProducto)
         {

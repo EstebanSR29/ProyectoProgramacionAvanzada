@@ -1,0 +1,58 @@
+﻿@model List<ProyectoG6.BaseDatos.MensajesContacto_Result>
+@{
+    ViewBag.Title = "MensajesContacto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="scrollable-container">
+                @foreach (var item in Model)
+                {
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="card-title mb-0">@item.Nombre</h5>
+                                    <h6 class="card-subtitle mb-0 text-muted">@item.Correo</h6>
+                                    <h7 class="card-subtitle mb-0 text-muted">@item.Fecha.ToString("hh:mm tt d/MM/yyyy")</h7>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    @if (item.Estado == 1)
+                                    {
+                                        <form action="@Url.Action("Responder", "Contacto")" method="post">
+                                            <input type="hidden" name="IdContacto" value="@item.IdContacto" />
+                                            <button type="submit" class="btn btn-success btn-sm">Listo</button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Asunto:</strong> @item.Asunto</p>
+                            <p class="card-text"><strong>Mensaje:</strong> @item.Mensaje</p>
+                            <p class="card-text">
+                                @if (item.Estado == 1)
+                                {
+                                    <span class="badge bg-warning text-dark">Pendiente</span>
+                                }
+                                else if (item.Estado == 2)
+                                {
+                                    <span class="badge bg-success text-white">Listo</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .scrollable-container {
+        max-height: 650px;
+        overflow-y: auto;
+    }
+</style>

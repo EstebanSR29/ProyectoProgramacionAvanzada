@@ -3,6 +3,7 @@ using ProyectoG6.Entidades;
 using ProyectoG6.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,20 +23,24 @@ namespace ProyectoG6.Controllers
         {
             return View();
         }
-        [FiltroSeguridad]
-        [HttpGet]
-        public ActionResult Contacto()
-        {
-            return View();
-        }
+        
 
         [FiltroSeguridad]
         [HttpGet]
-        public ActionResult MostrarProductos()
+        public ActionResult MostrarProductos(string categoria = null)
         {
-            var respuesta = productoM.MostrarProductos();
+            var productos = productoM.MostrarProductos(categoria);
 
-            return View(respuesta);
+            var categorias = productoM.MenuCat();
+
+            if (categorias == null)
+            {
+                categorias = new List<string>();
+            }
+
+            ViewBag.Categorias = categorias;
+
+            return View(productos);
         }
 
         [FiltroSeguridad]

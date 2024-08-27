@@ -25,64 +25,52 @@
 }
 else
 {
-    <br />
-    <h2 class="text-center my-4">
-        <i class="fa fa-cart-plus"></i>Carrito
-    </h2>
-
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="table-responsive">
-                <table id="tablaCarrito" class="table table-bordered table-hover">
-                    <thead class="thead-dark">
-                        <tr class="text-center">
-                            <th>Producto</th>
-                            <th>Precio Unitario</th>
-                            <th>Cantidad</th>
-                            <th>SubTotal</th>
-                            <th>Impuesto</th>
-                            <th>Total</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="align-middle">@item.Producto</td>
-                                <td class="align-middle text-center">¢ @item.Precio.ToString("N2")</td>
-                                <td class="align-middle text-center">@item.Cantidad</td>
-                                <td class="align-middle text-center">¢ @item.Subtotal.Value.ToString("N2")</td>
-                                <td class="align-middle text-center">¢ @item.Impuesto.Value.ToString("N2")</td>
-                                <td class="align-middle text-center font-weight-bold">¢ @item.Total.Value.ToString("N2")</td>
-                                <td class="align-middle text-center">
-                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Eliminar"
-                                       onclick="ConfirmarEliminar('@item.Producto', '@Url.Action("EliminarDelCarrito", "Carrito", new { IdCarrito = item.IdCarrito ,IdProducto = item.IdProducto })');">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-                <div class="row mt-4">
-                    <div class="col-md-12 text-center">
-                        <div>
-                            <h4 class="alert-heading">Total a Cancelar</h4>
-                            <h2 class="font-weight-bold text-primary">¢ @decimal.Parse(Session["Total"].ToString()).ToString("N2")</h2>
+    <div class="container">
+        <br />
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <h2 class="text-center my-4">
+                                <i class="fa fa-cart-plus"></i>Carrito
+                            </h2>
                         </div>
-
-                        <div>
-                            <a href="javascript:void(0);" class="btn btn-primary" title="Realizar pago"
-                               onclick="ConfirmarCompra('@Url.Action("PagarCarrito", "Carrito")');">
-                                <i class="fa fa-credit-card"></i> Realizar pago
-                            </a>
+                        <div class="border p-3 shadow-sm" style="max-height: 400px; overflow-y: auto;">
+                            @foreach (var item in Model)
+                            {
+                                <div class="card mb-4 shadow-sm text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item.Producto</h5>
+                                        <p class="card-text">Precio Unitario: <strong>¢ @item.Precio.ToString("N2")</strong></p>
+                                        <p class="card-text">Cantidad: <strong>@item.Cantidad</strong></p>
+                                        <p class="card-text">SubTotal: <strong>¢ @item.Subtotal.Value.ToString("N2")</strong></p>
+                                        <p class="card-text">Impuesto: <strong>¢ @item.Impuesto.Value.ToString("N2")</strong></p>
+                                        <p class="card-text font-weight-bold text-primary">Total: ¢ @item.Total.Value.ToString("N2")</p>
+                                        <a href="javascript:void(0);" class="btn btn-danger mt-3" title="Eliminar"
+                                           onclick="ConfirmarEliminar('@item.Producto', '@Url.Action("EliminarDelCarrito", "Carrito", new { IdCarrito = item.IdCarrito ,IdProducto = item.IdProducto })');">
+                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <h4 class="alert-heading">Total a Cancelar</h4>
+                                <h2 class="font-weight-bold text-primary">¢ @decimal.Parse(Session["Total"].ToString()).ToString("N2")</h2>
+                                <a href="javascript:void(0);" class="btn btn-primary mt-4" title="Realizar pago"
+                                   onclick="ConfirmarCompra('@Url.Action("PagarCarrito", "Carrito")');">
+                                    <i class="fa fa-credit-card"></i> Realizar pago
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <br />
     <br />
     <br />

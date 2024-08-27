@@ -67,7 +67,7 @@
                         <a class="nav-link" href="@Url.Action("SobreNosotros", "Home")">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Contacto", "Home")">Contactanos</a>
+                        <a class="nav-link" href="@Url.Action("Contacto", "Contacto", new { IdUsuario = Session["IdUsuario"] })">Contactanos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("ConsultarFacturas", "Carrito")">Historial</a>

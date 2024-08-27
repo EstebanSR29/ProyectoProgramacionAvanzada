@@ -78,6 +78,52 @@ namespace ProyectoG6.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult RecuperarContrasenna()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RecuperarContrasenna(Usuario entidad)
+        {
+
+            string Token = usuarioM.CrearToken().ToString();
+
+            bool GuardarToken = usuarioM.GuardarToken(entidad.Correo, Token);
+
+            if (!GuardarToken)
+            {
+                TempData["ErrorMessage"] = "El correo ingresado no está registrado.";
+                return View();
+            }
+
+            TempData["SuccessMessage"] = "Se ha enviado un correo electrónico para recuperar su contraseña.";
+
+            return View();
+
+        }
+
+        [HttpGet]
+        public ActionResult ValidarToken(string Token)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ValidarToken(Contrasenna entidad)
+        {
+            var Token = entidad.Token;
+                bool tokenValido = usuarioM.ValidarToken(entidad.Token, entidad.ConfirmarContrasenna);
+                    if (tokenValido)
+                    {
+                        TempData["SuccessMessage"] = "¡Contraseña actualizada!";
+                        return View("Index");
+                    }
+            TempData["ErrorMessage"] = "¡El token expiró, solicite otro!";
+            return View();
+        }
+
+
         [FiltroSeguridad]
         [HttpGet]
         public ActionResult CerrarSesion()
@@ -161,5 +207,7 @@ namespace ProyectoG6.Controllers
 
             return RedirectToAction("PerfilUsuario", "Login", new { IdUsuario = IdUsuario });
         }
+
+        
     }
 }

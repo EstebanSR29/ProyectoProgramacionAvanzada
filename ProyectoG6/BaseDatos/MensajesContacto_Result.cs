@@ -10,17 +10,16 @@
 namespace ProyectoG6.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Comentarios
+    public partial class MensajesContacto_Result
     {
-        public int IdComentario { get; set; }
-        public int IdProducto { get; set; }
+        public int IdContacto { get; set; }
         public int IdUsuario { get; set; }
-        public string Comentariotxt { get; set; }
+        public string Nombre { get; set; }
+        public string Correo { get; set; }
+        public string Asunto { get; set; }
+        public string Mensaje { get; set; }
+        public int Estado { get; set; }
         public System.DateTime Fecha { get; set; }
-        public int Calificacion { get; set; }
-    
-        public virtual Productos Productos { get; set; }
     }
 }

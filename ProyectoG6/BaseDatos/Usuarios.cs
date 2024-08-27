@@ -18,7 +18,7 @@ namespace ProyectoG6.BaseDatos
         public Usuarios()
         {
             this.Carrito = new HashSet<Carrito>();
-            this.Comentarios = new HashSet<Comentarios>();
+            this.Contacto = new HashSet<Contacto>();
             this.Maestro = new HashSet<Maestro>();
         }
     
@@ -28,11 +28,12 @@ namespace ProyectoG6.BaseDatos
         public string Contrasenna { get; set; }
         public bool Estado { get; set; }
         public byte IdRol { get; set; }
+        public string Token { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Carrito> Carrito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comentarios> Comentarios { get; set; }
+        public virtual ICollection<Contacto> Contacto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Maestro> Maestro { get; set; }
         public virtual Roles Roles { get; set; }

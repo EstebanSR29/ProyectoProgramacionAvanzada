@@ -8,41 +8,61 @@
 <h2 class="text-center my-4">Catálogo de Productos</h2>
 
 <div class="container">
-    @if (Session["RolUsuario"].ToString() == "2")
-    {
-        <a href="@Url.Action("AgregarProducto", "Home")" class="btn btn-success btn-sm mb-4 d-block">Agregar Producto</a>
-    }
     <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <a href="@Url.Action("DetallesProducto", "Home", new { IdProducto = item.IdProducto })" class="text-decoration-none">
-                        <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre" style="height: 200px; object-fit: cover;">
+        <div class="col-md-3">
+            <div class="card mb-1">
+                <div class="card-header text-white bg-primary">
+                    <h5>Categorías</h5>
+                </div>
+                <div class="list-group list-group-flush" style="padding-left: 10px;">
+                    <a href="@Url.Action("MostrarProductos", "Home")" class="list-group-item list-group-item-action">
+                        Todas
                     </a>
-                    <div class="card-body">
-
-                        <h5 class="card-title">@item.Nombre</h5>
-                        <p class="card-text">₡ @item.Precio</p>
-
-                        <p class="card-text"><small class="text-muted">Categoría: @item.Categoria</small></p>
-                    </div>
-                    @if (Session["RolUsuario"].ToString() == "2")
+                    @foreach (var categoria in ViewBag.Categorias as List<string>)
                     {
-                        <div class="d-flex justify-content-start align-items-center mb-3 ps-3 pe-3">
-                            <a href="@Url.Action("ActualizarProducto", "Home", new { IdProducto = item.IdProducto })" class="btn btn-warning btn-sm me-2" title="Editar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-
-                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Eliminar"
-                               onclick="ConfirmarEliminar('@item.Nombre', '@Url.Action("EliminarProducto", "Home", new { IdProducto = item.IdProducto })');">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </div>
+                        <a href="@Url.Action("MostrarProductos", "Home", new { categoria = categoria })" class="list-group-item list-group-item-action">
+                            @categoria
+                        </a>
                     }
                 </div>
             </div>
-        }
+            @if (Session["RolUsuario"].ToString() == "2")
+            {
+                <a href="@Url.Action("AgregarProducto", "Home")" class="btn btn-success btn-sm mt-3 w-100">Agregar Producto</a>
+            }
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <a href="@Url.Action("DetallesProducto", "Home", new { IdProducto = item.IdProducto })" class="text-decoration-none">
+                                <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre" style="height: 200px; object-fit: cover;">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Nombre</h5>
+                                <p class="card-text">₡ @item.Precio</p>
+                                <p class="card-text"><small class="text-muted">Categoría: @item.Categoria</small></p>
+                            </div>
+                            @if (Session["RolUsuario"].ToString() == "2")
+                            {
+                                <div class="d-flex justify-content-start align-items-center mb-3 ps-3 pe-3">
+                                    <a href="@Url.Action("ActualizarProducto", "Home", new { IdProducto = item.IdProducto })" class="btn btn-warning btn-sm me-2" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Eliminar"
+                                       onclick="ConfirmarEliminar('@item.Nombre', '@Url.Action("EliminarProducto", "Home", new { IdProducto = item.IdProducto })');">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 

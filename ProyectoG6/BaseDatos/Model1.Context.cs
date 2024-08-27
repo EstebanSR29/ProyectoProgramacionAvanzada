@@ -30,6 +30,7 @@ namespace ProyectoG6.BaseDatos
         public virtual DbSet<Carrito> Carrito { get; set; }
         public virtual DbSet<Categorias> Categorias { get; set; }
         public virtual DbSet<Comentarios> Comentarios { get; set; }
+        public virtual DbSet<Contacto> Contacto { get; set; }
         public virtual DbSet<Detalle> Detalle { get; set; }
         public virtual DbSet<Maestro> Maestro { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
@@ -160,6 +161,23 @@ namespace ProyectoG6.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminiarDelCarrito", idCarritoParameter, idProductoParameter);
         }
     
+        public virtual int EnviarMensaje(Nullable<int> idUsuario, string asunto, string mensaje)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var asuntoParameter = asunto != null ?
+                new ObjectParameter("Asunto", asunto) :
+                new ObjectParameter("Asunto", typeof(string));
+    
+            var mensajeParameter = mensaje != null ?
+                new ObjectParameter("Mensaje", mensaje) :
+                new ObjectParameter("Mensaje", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EnviarMensaje", idUsuarioParameter, asuntoParameter, mensajeParameter);
+        }
+    
         public virtual ObjectResult<FacturaDetalle_Result> FacturaDetalle(Nullable<int> idUsuario)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -182,9 +200,18 @@ namespace ProyectoG6.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesion_Result>("IniciarSesion", correoParameter, contrasennaParameter);
         }
     
-        public virtual ObjectResult<MostrarProductos_Result> MostrarProductos()
+        public virtual ObjectResult<MensajesContacto_Result> MensajesContacto()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarProductos_Result>("MostrarProductos");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MensajesContacto_Result>("MensajesContacto");
+        }
+    
+        public virtual ObjectResult<MostrarProductos_Result> MostrarProductos(string categoria)
+        {
+            var categoriaParameter = categoria != null ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarProductos_Result>("MostrarProductos", categoriaParameter);
         }
     
         public virtual ObjectResult<ObtenerComentarios_Result> ObtenerComentarios(Nullable<int> idProducto)
@@ -237,6 +264,15 @@ namespace ProyectoG6.BaseDatos
                 new ObjectParameter("Contrasenna", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarUsuario", nombreParameter, correoParameter, contrasennaParameter);
+        }
+    
+        public virtual int ResponderMensaje(Nullable<int> idContacto)
+        {
+            var idContactoParameter = idContacto.HasValue ?
+                new ObjectParameter("IdContacto", idContacto) :
+                new ObjectParameter("IdContacto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ResponderMensaje", idContactoParameter);
         }
     }
 }

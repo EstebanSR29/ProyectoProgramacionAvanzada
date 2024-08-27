@@ -8,6 +8,6 @@
         public string Contrasena {  get; set; }
         public bool Estado { get; set; }
         public byte IdRol { get; set; }
-
+        public string Token {  get; set; }
     }
 }
